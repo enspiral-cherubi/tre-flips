@@ -27,6 +27,7 @@ class Environment {
   }
 
   render () {
+    this.bodies.forEach((body) => body.updateTreFlip() )
     this.renderer.render(this.scene, this.camera)
   }
 
@@ -44,6 +45,7 @@ class Environment {
       })
     })
   }
+
 }
 
 export default Environment

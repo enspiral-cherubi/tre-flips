@@ -6,18 +6,26 @@ var loader = new STLLoader()
 class Body {
 
   constructor () {
+    this.loaded = false
   }
 
   load (cb) {
     loader.load('./media/body.stl', (geometry) => {
       var material = new THREE.MeshNormalMaterial()
       this.mesh = new THREE.Mesh(geometry, material)
-      this.mesh.rotation.set(Math.PI / 2, 0, Math.PI / 1.2)
+      this.mesh.rotation.set(0, 0, 0)
       cb(this.mesh)
+      this.loaded = true
     })
   }
 
-  // 'private'
+  updateTreFlip () {
+    if (this.loaded) {
+      this.mesh.rotation.z += Math.PI / 90
+      this.mesh.rotation.y += Math.PI / 90
+      this.mesh.position.y = 100 * Math.sin(this.mesh.rotation.z)
+    }
+  }
 }
 
 export default Body
