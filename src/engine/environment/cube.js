@@ -14,7 +14,7 @@ class Cube {
 
   updatePosition () {
     this.z += Math.PI / 180 * 4
-    this.mesh.position.z = Math.sin(this.z)
+    this.mesh.position.z = 0.5 * Math.sin(this.z) + Math.cos(this.z / 3) - Math.sin(this.z / 10)
   }
 
 }
