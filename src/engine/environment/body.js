@@ -21,7 +21,7 @@ class Body {
 
   updateTreFlip () {
     if (this.loaded) {
-      this.mesh.rotation.z += Math.PI / 90
+      this.mesh.rotation.z += Math.PI / 180 * 3
       this.mesh.rotation.y += Math.PI / 90
       this.mesh.position.y = 100 * Math.sin(this.mesh.rotation.z)
     }
