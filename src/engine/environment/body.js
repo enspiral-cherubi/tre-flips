@@ -3,14 +3,21 @@ import THREESTLLoader from 'three-stl-loader'
 var STLLoader = THREESTLLoader(THREE)
 var loader = new STLLoader()
 
-function loadBodyMesh () {
-  return new Promise((resolve, reject) => {
+class Body {
+
+  constructor () {
+  }
+
+  load (cb) {
     loader.load('./media/body.stl', (geometry) => {
       var material = new THREE.MeshNormalMaterial()
-      var mesh = new THREE.Mesh(geometry, material)
-      resolve(mesh)
+      this.mesh = new THREE.Mesh(geometry, material)
+      this.mesh.rotation.set(Math.PI / 2, 0, Math.PI / 1.2)
+      cb(this.mesh)
     })
-  })
+  }
+
+  // 'private'
 }
 
-export default loadBodyMesh
+export default Body

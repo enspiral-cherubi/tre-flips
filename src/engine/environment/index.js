@@ -3,7 +3,7 @@ import $ from 'jquery'
 import ThreeOrbitControls from 'three-orbit-controls'
 var OrbitControls = ThreeOrbitControls(THREE)
 import WindowResize from 'three-window-resize'
-import loadBodyMesh from './load-body-mesh.js'
+import Body from './body.js'
 import range from 'lodash.range'
 
 class Environment {
@@ -22,6 +22,7 @@ class Environment {
 
     var windowResize = new WindowResize(this.renderer, this.camera)
 
+    this.bodies = []
     this._addBodiesToScene(12)
   }
 
@@ -34,10 +35,11 @@ class Environment {
   _addBodiesToScene (bodyCount) {
     var spacing = 40
     range(bodyCount).forEach((i) => {
-      loadBodyMesh().then((mesh) => {
+      var body = new Body()
+      this.bodies.push(body)
+      body.load((mesh) => {
         var x = spacing * i - (spacing * bodyCount / 2)
         mesh.position.set(x, 0, 0)
-        mesh.rotation.set(Math.PI / 2, 0, Math.PI / 1.2)
         this.scene.add(mesh)
       })
     })
