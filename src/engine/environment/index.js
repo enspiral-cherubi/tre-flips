@@ -16,10 +16,6 @@ class Environment {
 
     this.controls = new OrbitControls(this.camera)
 
-    // var vector = new THREE.Vector3(0, 0, -1);
-    // vector.applyEuler(this.camera.rotation, this.camera.eulerOrder);
-    // this.camera.lookAt(vector)
-
     this.renderer = new THREE.WebGLRenderer({alpha: true, canvas: $('#three-canvas')[0]})
     this.renderer.setSize(window.innerWidth, window.innerHeight)
     this.renderer.setClearColor(0xffffff, 1)
@@ -30,7 +26,7 @@ class Environment {
     this.scene.add(axisHelper)
 
     this.cubeMatrix = []
-    this._addCubesToScene(100, 25)
+    this._addCubesToScene(60, 20)
   }
 
   render () {
