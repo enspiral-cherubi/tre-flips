@@ -26,24 +26,25 @@ class Environment {
     this.scene.add(axisHelper)
 
     this.cubeMatrix = []
-    this._addCubesToScene(60, 20)
+    this._addCubesToScene(50, 50)
   }
 
   render () {
-    this.cubeMatrix.forEach((cube) => cube.updatePosition() )
+    this.cubeMatrix.forEach((row) => {
+      row.forEach((cube) => cube.updatePosition())
+    })
     this.renderer.render(this.scene, this.camera)
   }
 
   // 'private'
 
   _addCubesToScene (numRows, numCubesInRow) {
-    range(numRows).forEach((r) => {
-      range(numCubesInRow).forEach((c) => {
+    this.cubeMatrix = range(numRows).map((r) => {
+      return range(numCubesInRow).map((c) => {
         var cube = new Cube(r + c)
-        var x = c, y = r
-        cube.mesh.position.set(x, y, 0)
+        cube.mesh.position.set(c, r, 0)
         this.scene.add(cube.mesh)
-        this.cubeMatrix.push(cube)
+        return cube
       })
     })
   }
